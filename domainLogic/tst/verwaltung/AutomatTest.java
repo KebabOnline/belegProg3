@@ -64,7 +64,7 @@ public class AutomatTest {
         automat.addKuchen(kuchen1);
         automat.addKuchen(kuchen2);
 
-        List<Kuchen> liste = automat.getAlleKuchen("ObstkuchenImpl");
+        List<ObstkuchenImpl> liste = automat.getAlleKuchen("ObstkuchenImpl");
         assertEquals(2, liste.size());
     }
 
@@ -80,14 +80,14 @@ public class AutomatTest {
         automat.addKuchen(kuchen1);
         automat.addKuchen(kuchen2);
 
-        List<Kuchen> liste = automat.getAlleKuchen(null);
+        List<ObstkuchenImpl> liste = automat.getAlleKuchen(null);
         assertEquals(2, liste.size());
     }
 
     @Test
     public void testGetAlleKuchenLeer() {
         Automat automat = new Automat(10);
-        List<Kuchen> liste = automat.getAlleKuchen(null);
+        List<ObstkuchenImpl> liste = automat.getAlleKuchen(null);
         assertEquals(0, liste.size());
     }
 
@@ -131,7 +131,7 @@ public class AutomatTest {
         boolean entfernt = automat.removeKuchen(fachnummer);
         assertTrue(entfernt);
 
-        List<Kuchen> alleKuchen = automat.getAlleKuchen(null);
+        List<ObstkuchenImpl> alleKuchen = automat.getAlleKuchen(null);
         assertTrue(alleKuchen.isEmpty());
     }
 

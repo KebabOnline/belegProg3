@@ -54,9 +54,9 @@ public class Automat {
     }
 
     // List
-    public List<Kuchen> getAlleKuchen(String typ) {
-        List<Kuchen> kuchenList = new ArrayList<>();
-        for (Kuchen kuchen : kuchenMap.values()) {
+    public List<ObstkuchenImpl> getAlleKuchen(String typ) {
+        List<ObstkuchenImpl> kuchenList = new ArrayList<>();
+        for (ObstkuchenImpl kuchen : kuchenMap.values()) {
             if (typ == null || kuchen.getClass().getSimpleName().equalsIgnoreCase(typ)) {
                 kuchenList.add(kuchen);
             }
