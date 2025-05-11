@@ -1,7 +1,6 @@
 package verwaltung;
 
 import kuchen.Allergen;
-import kuchen.Kuchen;
 import kuchen.ObstkuchenImpl;
 
 import java.math.BigDecimal;
@@ -9,11 +8,15 @@ import java.time.Duration;
 import java.util.*;
 
 public class AutomatCLI {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Automat automat = new Automat(10);
+    private final Scanner scanner = new Scanner(System.in);
+    private final Automat automat;
 
-    public static void main(String[] args) {
-        automat.addHersteller("Froggy"); // für Testzwecke
+    public AutomatCLI(Automat automat) {
+        this.automat = automat;
+    }
+
+    public void start() {
+        automat.addHersteller("Froggy"); // temp
 
         System.out.println("Eingaben: add | list | update | remove | exit");
 
@@ -43,7 +46,7 @@ public class AutomatCLI {
         }
     }
 
-    private static void addKuchen() {
+    private void addKuchen() {
         Hersteller hersteller = new HerstellerImpl("Froggy");
         Set<Allergen> allergene = new HashSet<>();
         allergene.add(Allergen.Gluten);
@@ -56,21 +59,21 @@ public class AutomatCLI {
         }
     }
 
-    private static void listKuchen() {
+    private void listKuchen() {
         List<ObstkuchenImpl> kuchenList = automat.getAlleKuchen(null);
-        for (ObstkuchenImpl k : kuchenList) {
-            System.out.println("Fach: " + k.getFachnummer()
-                    + ", Hersteller: " + k.getHersteller().getName()
-                    + ", Allergene: " + k.getAllergene()
-                    + ", Nährwert: " + k.getNaehrwert()
-                    + ", Haltbarkeit: " + k.getHaltbarkeit()
-                    + ", Preis: " + k.getPreis()
-                    + ", Obstsorte: " + k.getObstsorte()
-                    + ", Inspektion: " + k.getInspektionsdatum());
+        for (ObstkuchenImpl kuchen : kuchenList) {
+            System.out.println("Fach: " + kuchen.getFachnummer()
+                    + ", Hersteller: " + kuchen.getHersteller().getName()
+                    + ", Allergene: " + kuchen.getAllergene()
+                    + ", Nährwert: " + kuchen.getNaehrwert()
+                    + ", Haltbarkeit: " + kuchen.getHaltbarkeit()
+                    + ", Preis: " + kuchen.getPreis()
+                    + ", Obstsorte: " + kuchen.getObstsorte()
+                    + ", Inspektion: " + kuchen.getInspektionsdatum());
         }
     }
 
-    private static void updateInspektionsdatum() {
+    private void updateInspektionsdatum() {
         System.out.print("Fachnummer zum Aktualisieren: ");
         int fachnummer = Integer.parseInt(scanner.nextLine());
         if (automat.updateDatum(fachnummer, new Date())) {
@@ -80,7 +83,7 @@ public class AutomatCLI {
         }
     }
 
-    private static void removeKuchen() {
+    private void removeKuchen() {
         System.out.print("Fachnummer zum Entfernen: ");
         int fachnummer = Integer.parseInt(scanner.nextLine());
         if (automat.removeKuchen(fachnummer)) {
