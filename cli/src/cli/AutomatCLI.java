@@ -1,7 +1,10 @@
-package verwaltung;
+package cli;
 
+import domainLogic.Automat;
+import domainLogic.HerstellerImpl;
 import kuchen.Allergen;
-import kuchen.ObstkuchenImpl;
+import domainLogic.ObstkuchenImpl;
+import verwaltung.Hersteller;
 
 import java.math.BigDecimal;
 import java.time.Duration;

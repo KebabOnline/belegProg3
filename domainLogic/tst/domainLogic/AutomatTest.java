@@ -1,8 +1,7 @@
-package verwaltung;
+package domainLogic;
+
 
 import kuchen.Allergen;
-import kuchen.Kuchen;
-import kuchen.ObstkuchenImpl;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

@@ -1,5 +1,5 @@
-import verwaltung.Automat;
-import verwaltung.AutomatCLI;
+import domainLogic.Automat;
+import cli.AutomatCLI;
 
 public class MainAutomatCLI {
     public static void main(String[] args) {

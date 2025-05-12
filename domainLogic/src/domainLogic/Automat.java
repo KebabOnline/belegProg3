@@ -1,8 +1,7 @@
-package verwaltung;
+package domainLogic;
 
-import kuchen.Kuchen;
-import kuchen.ObstkuchenImpl;
 
+import verwaltung.Hersteller;
 
 import java.util.*;
 
