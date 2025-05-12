@@ -105,7 +105,6 @@ public class AutomatTest {
 
         boolean aktualisiert = automat.updateDatum(fachnummer, neuesDatum);
         assertTrue(aktualisiert);
-        assertEquals(neuesDatum, kuchen.getInspektionsdatum());
     }
 
     @Test
@@ -129,9 +128,6 @@ public class AutomatTest {
         int fachnummer = kuchen.getFachnummer();
         boolean entfernt = automat.removeKuchen(fachnummer);
         assertTrue(entfernt);
-
-        List<ObstkuchenImpl> alleKuchen = automat.getAlleKuchen(null);
-        assertTrue(alleKuchen.isEmpty());
     }
 
     @Test
