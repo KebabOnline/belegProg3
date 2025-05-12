@@ -42,7 +42,7 @@ public class Automat {
             return false; // Hersteller unbekannt
         }
         neuerKuchen.setFachnummer(naechsteFachnummer++);
-        neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
+        //neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
         kuchenMap.put(neuerKuchen.getFachnummer(), neuerKuchen);
         return true;
     }

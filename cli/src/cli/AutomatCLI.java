@@ -71,7 +71,7 @@ public class AutomatCLI {
                     + ", Haltbarkeit: " + kuchen.getHaltbarkeit()
                     + ", Preis: " + kuchen.getPreis()
                     + ", Obstsorte: " + kuchen.getObstsorte()
-                    + ", Inspektion: " + kuchen.getInspektionsdatum());
+                    + ", Letzte Inspektion: " + kuchen.getInspektionsdatum());
         }
     }
 
