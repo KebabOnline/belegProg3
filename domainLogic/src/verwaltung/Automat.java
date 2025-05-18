@@ -1,9 +1,6 @@
 package verwaltung;
 
-import kuchen.Kuchen;
 import kuchen.ObstkuchenImpl;
-
-
 import java.util.*;
 
 public class Automat {
@@ -77,5 +74,7 @@ public class Automat {
     public int getKapazitaet() {
         return kapazitaet;
     }
+
+
 }
 

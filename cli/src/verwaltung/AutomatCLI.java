@@ -16,7 +16,6 @@ public class AutomatCLI {
     }
 
     public void start() {
-        automat.addHersteller("Froggy"); // temp
 
         System.out.println("Eingaben: add | list | update | remove | exit");
 
@@ -47,11 +46,8 @@ public class AutomatCLI {
     }
 
     private void addKuchen() {
-        Hersteller hersteller = new HerstellerImpl("Froggy");
-        Set<Allergen> allergene = new HashSet<>();
-        allergene.add(Allergen.Gluten);
-
-        ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel");
+        ObstkuchenImpl kuchen = createTestKuchen();
+        
         if (automat.addKuchen(kuchen)) {
             System.out.println("Kuchen hinzugefügt.");
         } else {
@@ -91,5 +87,15 @@ public class AutomatCLI {
         } else {
             System.out.println("Kein Kuchen unter dieser Fachnummer gefunden.");
         }
+    }
+
+    private ObstkuchenImpl createTestKuchen() { // temporär: wird ersetzt durch CLI eingabe
+        HerstellerImpl hersteller = new HerstellerImpl("Froggy");
+        automat.addHersteller(hersteller.getName());
+        Set<Allergen> allergene = new HashSet<>();
+        allergene.add(Allergen.Gluten);
+
+        ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel");
+        return kuchen;
     }
 }
