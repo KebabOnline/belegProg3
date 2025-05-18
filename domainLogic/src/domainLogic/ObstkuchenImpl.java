@@ -1,5 +1,7 @@
-package kuchen;
+package domainLogic;
 
+import kuchen.Allergen;
+import kuchen.Obstkuchen;
 import verwaltung.Hersteller;
 
 import java.math.BigDecimal;

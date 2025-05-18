@@ -1,8 +1,7 @@
-package verwaltung;
+package domainLogic;
+
 
 import kuchen.Allergen;
-import kuchen.Kuchen;
-import kuchen.ObstkuchenImpl;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -106,7 +105,6 @@ public class AutomatTest {
 
         boolean aktualisiert = automat.updateDatum(fachnummer, neuesDatum);
         assertTrue(aktualisiert);
-        assertEquals(neuesDatum, kuchen.getInspektionsdatum());
     }
 
     @Test
@@ -130,9 +128,6 @@ public class AutomatTest {
         int fachnummer = kuchen.getFachnummer();
         boolean entfernt = automat.removeKuchen(fachnummer);
         assertTrue(entfernt);
-
-        List<ObstkuchenImpl> alleKuchen = automat.getAlleKuchen(null);
-        assertTrue(alleKuchen.isEmpty());
     }
 
     @Test

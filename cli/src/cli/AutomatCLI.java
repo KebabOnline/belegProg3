@@ -1,7 +1,10 @@
-package verwaltung;
+package cli;
 
+import domainLogic.Automat;
+import domainLogic.HerstellerImpl;
 import kuchen.Allergen;
-import kuchen.ObstkuchenImpl;
+import domainLogic.ObstkuchenImpl;
+import verwaltung.Hersteller;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -47,7 +50,7 @@ public class AutomatCLI {
 
     private void addKuchen() {
         ObstkuchenImpl kuchen = createTestKuchen();
-        
+
         if (automat.addKuchen(kuchen)) {
             System.out.println("Kuchen hinzugefügt.");
         } else {
@@ -65,7 +68,7 @@ public class AutomatCLI {
                     + ", Haltbarkeit: " + kuchen.getHaltbarkeit()
                     + ", Preis: " + kuchen.getPreis()
                     + ", Obstsorte: " + kuchen.getObstsorte()
-                    + ", Inspektion: " + kuchen.getInspektionsdatum());
+                    + ", Letzte Inspektion: " + kuchen.getInspektionsdatum());
         }
     }
 

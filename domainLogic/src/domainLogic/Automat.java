@@ -1,6 +1,8 @@
-package verwaltung;
+package domainLogic;
 
-import kuchen.ObstkuchenImpl;
+
+import verwaltung.Hersteller;
+
 import java.util.*;
 
 public class Automat {
@@ -40,7 +42,7 @@ public class Automat {
             return false; // Hersteller unbekannt
         }
         neuerKuchen.setFachnummer(naechsteFachnummer++);
-        neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
+        //neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
         kuchenMap.put(neuerKuchen.getFachnummer(), neuerKuchen);
         return true;
     }
@@ -74,7 +76,5 @@ public class Automat {
     public int getKapazitaet() {
         return kapazitaet;
     }
-
-
 }
 

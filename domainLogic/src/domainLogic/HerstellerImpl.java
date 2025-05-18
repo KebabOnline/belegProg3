@@ -1,4 +1,6 @@
-package verwaltung;
+package domainLogic;
+
+import verwaltung.Hersteller;
 
 public class HerstellerImpl implements Hersteller {
 
