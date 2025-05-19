@@ -43,7 +43,7 @@ public class AutomatCLI {
                     System.out.println("Programm beendet.");
                     return;
                 default:
-                    System.out.println("Unbekannter Befehl.");
+                    System.out.println("Unbekannte Eingabe.");
             }
         }
     }
@@ -73,7 +73,7 @@ public class AutomatCLI {
     }
 
     private void updateInspektionsdatum() {
-        System.out.print("Fachnummer zum Aktualisieren: ");
+        System.out.print("Fachnummer: ");
         int fachnummer = Integer.parseInt(scanner.nextLine());
         if (automat.updateDatum(fachnummer, new Date())) {
             System.out.println("Datum aktualisiert.");
@@ -83,7 +83,7 @@ public class AutomatCLI {
     }
 
     private void removeKuchen() {
-        System.out.print("Fachnummer zum Entfernen: ");
+        System.out.print("Fachnummer: ");
         int fachnummer = Integer.parseInt(scanner.nextLine());
         if (automat.removeKuchen(fachnummer)) {
             System.out.println("Kuchen entfernt.");
