@@ -95,8 +95,7 @@ public class AutomatCLI {
     private ObstkuchenImpl createTestKuchen() { // temporär: wird ersetzt durch CLI eingabe
         HerstellerImpl hersteller = new HerstellerImpl("Froggy");
         automat.addHersteller(hersteller.getName());
-        Set<Allergen> allergene = new HashSet<>();
-        allergene.add(Allergen.Gluten);
+        Set<Allergen> allergene = EnumSet.of(Allergen.Gluten, Allergen.Haselnuss);
 
         ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel");
         return kuchen;
