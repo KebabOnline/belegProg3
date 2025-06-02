@@ -1,22 +1,24 @@
 package domainLogic;
 
 
+import events.*;
 import verwaltung.Hersteller;
 
 import java.util.*;
 
-public class Automat {
+public class Automat implements Subjekt {
     private final int kapazitaet;
     private Map<String, Hersteller> herstellerMap = new HashMap<>();
     private Map<Integer, ObstkuchenImpl> kuchenMap = new HashMap<>();
     private int naechsteFachnummer = 1;
+    private final List<Beobachter> beobachterList = new ArrayList<>();
 
     public Automat(int kapazitaet) {
         this.kapazitaet = kapazitaet;
     }
 
 
-    public boolean addHersteller(String name) {
+    public synchronized boolean addHersteller(String name) {
         if (herstellerMap.containsKey(name)) {
             return false;
         }
@@ -25,7 +27,7 @@ public class Automat {
     }
 
 
-    public boolean removeHersteller(String name) {
+    public synchronized boolean removeHersteller(String name) {
         if (!herstellerMap.containsKey(name)) {
             return false;
         }
@@ -34,7 +36,7 @@ public class Automat {
     }
 
     // Create
-    public boolean addKuchen(ObstkuchenImpl neuerKuchen) {
+    public synchronized boolean addKuchen(ObstkuchenImpl neuerKuchen) {
         if (kuchenMap.size() >= kapazitaet) {
             return false; // Automat voll
         }
@@ -44,16 +46,22 @@ public class Automat {
         neuerKuchen.setFachnummer(naechsteFachnummer++);
         //neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
         kuchenMap.put(neuerKuchen.getFachnummer(), neuerKuchen);
+        benachrichtige(new AddKuchenEvent(neuerKuchen));
         return true;
     }
 
     // Delete
-    public boolean removeKuchen(int fachnummer) {
-        return kuchenMap.remove(fachnummer) != null;
+    public synchronized boolean removeKuchen(int fachnummer) {
+        ObstkuchenImpl entfernterKuchen = kuchenMap.remove(fachnummer);
+        if (entfernterKuchen != null) {
+            benachrichtige(new RemoveKuchenEvent(fachnummer));
+            return true;
+        }
+        return false;
     }
 
     // List
-    public List<ObstkuchenImpl> getAlleKuchen(String typ) {
+    public synchronized List<ObstkuchenImpl> getAlleKuchen(String typ) {
         List<ObstkuchenImpl> kuchenList = new ArrayList<>();
         for (ObstkuchenImpl kuchen : kuchenMap.values()) {
             if (typ == null || kuchen.getClass().getSimpleName().equalsIgnoreCase(typ)) {
@@ -64,7 +72,7 @@ public class Automat {
     }
 
     // Update Date
-    public boolean updateDatum(int fachnummer, Date neuesDatum) {
+    public synchronized boolean updateDatum(int fachnummer, Date neuesDatum) {
         ObstkuchenImpl kuchen = kuchenMap.get(fachnummer);
         if (kuchen == null) {
             return false;
@@ -73,8 +81,26 @@ public class Automat {
         return true;
     }
 
-    public int getKapazitaet() {
+    public synchronized int getKapazitaet() {
         return kapazitaet;
+    }
+
+    @Override
+    public synchronized void addListener(Beobachter beobachter) {
+        this.beobachterList.add(beobachter);
+    }
+
+    @Override
+    public synchronized void removeListener(Beobachter listener) {
+        this.beobachterList.remove(listener);
+    }
+
+    @Override
+    public void benachrichtige(Event event) {
+        List<Beobachter> currentBeobachter = new ArrayList<>(beobachterList); // Kopie erstellen
+        for (Beobachter beobachter : currentBeobachter) {
+            beobachter.aktualisiere(event);
+        }
     }
 }
 
