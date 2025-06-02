@@ -2,13 +2,14 @@ package sim;
 
 import events.AddKuchenEvent;
 import events.Beobachter;
-import events.Event;
 import events.RemoveKuchenEvent;
+
+import java.util.EventObject;
 
 public class ConsoleBeobachter implements Beobachter {
 
     @Override
-    public void aktualisiere(Event event) {
+    public void aktualisiere(EventObject event) {
         String timestamp = java.time.LocalTime.now().toString();
 
         if (event instanceof AddKuchenEvent) {
