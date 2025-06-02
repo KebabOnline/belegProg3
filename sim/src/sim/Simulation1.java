@@ -15,7 +15,6 @@ import java.util.Random;
 
 public class Simulation1 {
 
-    // Konstanten für die zufälligen Kuchen
     private static final String[] OBSTSORTEN = {
             "Apfel", "Banane", "Erdbeere", "Himbeere", "Blaubeere"
     };
