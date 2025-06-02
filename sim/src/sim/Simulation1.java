@@ -55,7 +55,7 @@ public class Simulation1 {
                                 timestamp);
                     }
 
-                    Thread.sleep(100);
+                    Thread.sleep(0);
 
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -89,7 +89,7 @@ public class Simulation1 {
                                 timestamp);
                     }
 
-                    Thread.sleep(100);
+                    Thread.sleep(0);
 
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();

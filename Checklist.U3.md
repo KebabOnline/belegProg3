@@ -19,27 +19,27 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 1 Punkt für die Erfüllung des Pflichtteils
 
 ### Pflichtteil
-- [ ] Quellen angegeben
-- [ ] zip Archiv
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX (und deren Abhängigkeiten)
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] main-Methoden nur im default package des module belegProg3
-- [ ] **keine vorgetäuschte Funktionalität (inkl. leere Tests)**
-- [ ] ausführbar
-- [ ] Simulation 1
-- [ ] Trennung zwischen GL und Simulationslogik
-- [ ] kritische Bereiche/atomare Operationen verwendet
-- [ ] Aktionen der threads produzieren Ausgaben auf der Konsole
+- [x] Quellen angegeben
+- [x] zip Archiv
+- [x] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [x] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX (und deren Abhängigkeiten)
+- [x] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [x] kompilierbar
+- [x] Trennung zwischen Test- und Produktiv-Code
+- [x] main-Methoden nur im default package des module belegProg3
+- [x] **keine vorgetäuschte Funktionalität (inkl. leere Tests)**
+- [x] ausführbar
+- [x] Simulation 1
+- [x] Trennung zwischen GL und Simulationslogik
+- [x] kritische Bereiche/atomare Operationen verwendet
+- [x] Aktionen der threads produzieren Ausgaben auf der Konsole
 
 ### empfohlene Realisierungen als Vorbereitung auf den Beleg
 
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben   
 
-- [ ] keine Verwendung von Thread.sleep o.Ä. bzw. nur mit 0-Werten
-- [ ] Änderungen an der Geschäftslogik produzieren Ausgaben auf der Konsole
+- [x] keine Verwendung von Thread.sleep o.Ä. bzw. nur mit 0-Werten
+- [x] Änderungen an der Geschäftslogik produzieren Ausgaben auf der Konsole
 - [ ] deterministische Funktionalität testbar
 - [ ] Simulation 2
 - [ ] mindestens je ein Test für alle in der Simulation verwendeten Methoden die auf die Geschäftslogik zugreifen
