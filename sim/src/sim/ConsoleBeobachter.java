@@ -13,12 +13,10 @@ public class ConsoleBeobachter implements Beobachter {
 
         if (event instanceof AddKuchenEvent) {
             AddKuchenEvent addEvent = (AddKuchenEvent) event;
-            System.out.printf("[%s] AUTOMAT: Kuchen hinzugefügt (Fachnummer: %d, %s, %s)%n",
-                    timestamp, addEvent.getKuchen().getFachnummer(), addEvent.getKuchen().getObstsorte(), addEvent.getKuchen().getHersteller().getName());
+            System.out.printf("[%s] AUTOMAT: Kuchen hinzugefügt (Fachnummer: %d, %s, %s)%n", timestamp, addEvent.getKuchen().getFachnummer(), addEvent.getKuchen().getObstsorte(), addEvent.getKuchen().getHersteller().getName());
         } else if (event instanceof RemoveKuchenEvent) {
             RemoveKuchenEvent removeEvent = (RemoveKuchenEvent) event;
-            System.out.printf("[%s] AUTOMAT: Kuchen entfernt (Fachnummer: %d)%n",
-                    timestamp, removeEvent.getFachnummer());
+            System.out.printf("[%s] AUTOMAT: Kuchen entfernt (Fachnummer: %d)%n", timestamp, removeEvent.getFachnummer());
         }
     }
 }

@@ -48,11 +48,9 @@ public class Simulation1 {
                     String timestamp = java.time.LocalTime.now().toString();
 
                     if (hinzugefuegt) {
-                        System.out.printf("[%s] ADD THREAD: Kuchen hinzugefügt (%s, %s)%n",
-                                timestamp, neuerKuchen.getObstsorte(), neuerKuchen.getHersteller().getName());
+                        System.out.printf("[%s] ADD THREAD: Kuchen hinzugefügt (%s, %s)%n", timestamp, neuerKuchen.getObstsorte(), neuerKuchen.getHersteller().getName());
                     } else {
-                        System.out.printf("[%s] ADD THREAD: Kuchen nicht hinzugefügt%n",
-                                timestamp);
+                        System.out.printf("[%s] ADD THREAD: Kuchen nicht hinzugefügt%n", timestamp);
                     }
 
                     Thread.sleep(0);
@@ -78,15 +76,12 @@ public class Simulation1 {
                         boolean entfernt = automat.removeKuchen(fachnummer);
 
                         if (entfernt) {
-                            System.out.printf("[%s] REM THREAD: Kuchen entfernt (Fachnummer: %d, %s, %s)%n",
-                                    timestamp, fachnummer, randomKuchen.getObstsorte(), randomKuchen.getHersteller().getName());
+                            System.out.printf("[%s] REM THREAD: Kuchen entfernt (Fachnummer: %d, %s, %s)%n", timestamp, fachnummer, randomKuchen.getObstsorte(), randomKuchen.getHersteller().getName());
                         } else {
-                            System.out.printf("[%s] REM THREAD: Kuchen nicht entfernt (Fachnummer: %d)%n",
-                                    timestamp, fachnummer);
+                            System.out.printf("[%s] REM THREAD: Kuchen nicht entfernt (Fachnummer: %d)%n", timestamp, fachnummer);
                         }
                     } else {
-                        System.out.printf("[%s] REM THREAD: Keine Kuchen im Automat%n",
-                                timestamp);
+                        System.out.printf("[%s] REM THREAD: Keine Kuchen im Automat%n", timestamp);
                     }
 
                     Thread.sleep(0);
