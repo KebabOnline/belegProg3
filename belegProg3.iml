@@ -14,5 +14,6 @@
     <orderEntry type="module" module-name="io" />
     <orderEntry type="module" module-name="net" />
     <orderEntry type="module" module-name="sim" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
