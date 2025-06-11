@@ -46,7 +46,7 @@ public class Automat implements Subjekt {
         neuerKuchen.setFachnummer(naechsteFachnummer++);
         //neuerKuchen.setInspektionsdatum(new Date()); // aktuelles Datum setzen
         kuchenMap.put(neuerKuchen.getFachnummer(), neuerKuchen);
-        benachrichtige(new AddKuchenEvent(neuerKuchen));
+        benachrichtige(new AddKuchenEvent(this, neuerKuchen));
         return true;
     }
 
@@ -54,7 +54,7 @@ public class Automat implements Subjekt {
     public synchronized boolean removeKuchen(int fachnummer) {
         ObstkuchenImpl entfernterKuchen = kuchenMap.remove(fachnummer);
         if (entfernterKuchen != null) {
-            benachrichtige(new RemoveKuchenEvent(fachnummer));
+            benachrichtige(new RemoveKuchenEvent(this, fachnummer));
             return true;
         }
         return false;
@@ -96,7 +96,7 @@ public class Automat implements Subjekt {
     }
 
     @Override
-    public void benachrichtige(Event event) {
+    public void benachrichtige(EventObject event) {
         List<Beobachter> currentBeobachter = new ArrayList<>(beobachterList); // Kopie erstellen
         for (Beobachter beobachter : currentBeobachter) {
             beobachter.aktualisiere(event);

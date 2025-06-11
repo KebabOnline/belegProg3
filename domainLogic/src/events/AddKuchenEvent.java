@@ -2,10 +2,13 @@ package events;
 
 import domainLogic.ObstkuchenImpl;
 
-public class AddKuchenEvent implements Event {
+import java.util.EventObject;
+
+public class AddKuchenEvent extends EventObject {
     private final ObstkuchenImpl kuchen;
 
-    public AddKuchenEvent(ObstkuchenImpl kuchen) {
+    public AddKuchenEvent(Object source, ObstkuchenImpl kuchen) {
+        super(source);
         this.kuchen = kuchen;
     }
 

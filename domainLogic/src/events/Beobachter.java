@@ -1,5 +1,7 @@
 package events;
 
+import java.util.EventObject;
+
 public interface Beobachter {
-    void aktualisiere(Event event);
+    void aktualisiere(EventObject event);
 }

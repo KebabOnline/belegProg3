@@ -1,9 +1,12 @@
 package events;
 
-public class RemoveKuchenEvent implements Event {
+import java.util.EventObject;
+
+public class RemoveKuchenEvent extends EventObject {
     private final int fachnummer;
 
-    public RemoveKuchenEvent(int fachnummer) {
+    public RemoveKuchenEvent(Object source, int fachnummer) {
+        super(source);
         this.fachnummer = fachnummer;
     }
 
