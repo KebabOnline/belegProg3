@@ -35,6 +35,10 @@ public class Automat implements Subjekt {
         return true;
     }
 
+    public synchronized Collection<Hersteller> getHersteller() {
+        return new ArrayList<>(herstellerMap.values());
+    }
+
     // Create
     public synchronized boolean addKuchen(ObstkuchenImpl neuerKuchen) {
         if (kuchenMap.size() >= kapazitaet) {

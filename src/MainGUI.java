@@ -23,7 +23,7 @@ public class MainGUI extends Application {
         Parent root = loader.load();
 
         KuchenverwaltungController controller = loader.getController();
-        //controller.setAutomat(automat); // Automat an Controller übergeben
+        controller.setAutomat(automat);
 
         stage.setTitle("Kuchen Control Terminal");
         Scene scene = new Scene(root, 1000, 700);
