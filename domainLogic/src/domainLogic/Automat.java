@@ -82,6 +82,7 @@ public class Automat implements Subjekt {
             return false;
         }
         kuchen.setInspektionsdatum(neuesDatum);
+        benachrichtige(new UpdateKuchenEvent(this, fachnummer));
         return true;
     }
 
