@@ -75,9 +75,18 @@ public class KuchenverwaltungController implements Beobachter {
 
     @FXML
     private void handleAddKuchen() {
-        HerstellerImpl hersteller = new HerstellerImpl("Anton");
+        ChoiceDialog<String> herstellerDialog = new ChoiceDialog<>(herstellerList.get(0), herstellerList);
+        herstellerDialog.setTitle("Hersteller wählen");
+        herstellerDialog.setHeaderText("Hersteller für den Kuchen wählen");
+        herstellerDialog.setContentText("Hersteller:");
+
+        Optional<String> herstellerResult = herstellerDialog.showAndWait();
+        if (herstellerResult.isEmpty()) return;
+        String herstellerName = herstellerResult.get();
+
+        HerstellerImpl hersteller = new HerstellerImpl(herstellerName);
         Set<Allergen> allergene = EnumSet.of(Allergen.Gluten, Allergen.Haselnuss);
-        ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel");
+        ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel"); // Test Kuchen
         automat.addKuchen(kuchen);
     }
 
@@ -104,8 +113,8 @@ public class KuchenverwaltungController implements Beobachter {
     private void updateKuchenList() {
         kuchenList.clear();
         List<ObstkuchenImpl> alleKuchen = automat.getAlleKuchen(null);
-        for (ObstkuchenImpl kuchen : alleKuchen) {
-            kuchenList.add(new ObstkuchenFX(kuchen));
+        for (ObstkuchenImpl k : alleKuchen) {
+            kuchenList.add(new ObstkuchenFX(k));
         }
     }
 
