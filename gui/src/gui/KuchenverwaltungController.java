@@ -8,17 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import kuchen.Allergen;
+import verwaltung.Hersteller;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 public class KuchenverwaltungController implements Beobachter {
 
@@ -99,7 +95,10 @@ public class KuchenverwaltungController implements Beobachter {
 
     private void updateHerstellerList() {
         herstellerList.clear();
-        herstellerList.addAll(Arrays.asList("Anton", "Alina", "Luca"));
+        Collection<Hersteller> hersteller = automat.getHersteller();
+        for (Hersteller h : hersteller) {
+            herstellerList.add(h.getName());
+        }
     }
 
     private void updateKuchenList() {

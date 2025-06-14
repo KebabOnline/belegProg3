@@ -14,26 +14,26 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 1 Punkt für die Erfüllung des Pflichtteils
 
 ### Pflichtteil
-- [ ] Quellen angegeben
-- [ ] zip Archiv
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX (und deren Abhängigkeiten)
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] main-Methoden nur im default package des module belegProg3
-- [ ] keine vorgetäuschte Funktionalität (inkl. leere Tests)
-- [ ] ausführbar
-- [ ] CRUD für mindestens eine Kuchensorte in der GUI
-- [ ] Geschäfts- und Darstellungslogik getrennt (mindestens 2-Schichten-Architektur)
+- [x] Quellen angegeben
+- [x] zip Archiv
+- [x] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [x] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX (und deren Abhängigkeiten)
+- [x] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [x] kompilierbar
+- [x] Trennung zwischen Test- und Produktiv-Code
+- [x] main-Methoden nur im default package des module belegProg3
+- [x] keine vorgetäuschte Funktionalität (inkl. leere Tests)
+- [x] ausführbar
+- [x] CRUD für mindestens eine Kuchensorte in der GUI
+- [x] Geschäfts- und Darstellungslogik getrennt (mindestens 2-Schichten-Architektur)
 
 ### empfohlene Realisierungen als Vorbereitung auf den Beleg
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben
-- [ ] Auflistungen sind immer sichtbar und werden automatisch aktualisiert
-- [ ] FXML verwendet
-- [ ] sortierbare Darstellung der Kuchen mit Fachnummer, Hersteller*in, Inspektionsdatum und verbleibender Haltbarkeit
-- [ ] skalierbare Darstellung
-- [ ] data binding verwendet
+- [x] Auflistungen sind immer sichtbar und werden automatisch aktualisiert
+- [x] FXML verwendet
+- [x] sortierbare Darstellung der Kuchen mit Fachnummer, Hersteller*in, Inspektionsdatum und verbleibender Haltbarkeit
+- [x] skalierbare Darstellung
+- [x] data binding verwendet
 - [ ] Benutzeroberfläche wird nicht gesperrt (Nebenläufigkeit)
 - [ ] Austausch der Fachnummern mittels drag&drop
 

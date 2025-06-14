@@ -12,25 +12,17 @@ import java.util.stream.Collectors;
 
 public class ObstkuchenFX {
     private final StringProperty herstellerName;
-    //private final StringProperty allergene; // Formatiert als String
-    //private final IntegerProperty naehrwert;
     private final StringProperty haltbarkeit; // Formatiert als String
-    //private final ObjectProperty<BigDecimal> preis;
     private final ObjectProperty<Date> inspektionsdatum;
     private final IntegerProperty fachnummer;
-    //private final StringProperty obstsorte;
     private final ObstkuchenImpl originalKuchen;
 
 
     public ObstkuchenFX(ObstkuchenImpl kuchen) {
         this.herstellerName = new SimpleStringProperty(kuchen.getHersteller().getName());
-        //this.allergene = new SimpleStringProperty(kuchen.getAllergene().stream().map(Enum::toString).collect(Collectors.joining(", ")));
-        //this.naehrwert = new SimpleIntegerProperty(kuchen.getNaehrwert());
         this.haltbarkeit = new SimpleStringProperty(haltbarkeitFormatieren(kuchen.getHaltbarkeit()));
-        //this.preis = new SimpleObjectProperty<>(kuchen.getPreis());
         this.inspektionsdatum = new SimpleObjectProperty<>(kuchen.getInspektionsdatum());
         this.fachnummer = new SimpleIntegerProperty(kuchen.getFachnummer());
-        //this.obstsorte = new SimpleStringProperty(kuchen.getObstsorte());
         this.originalKuchen = kuchen;
     }
 
