@@ -4,10 +4,8 @@ package gui;
 import domainLogic.ObstkuchenImpl;
 import javafx.beans.property.*;
 
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 
 public class ObstkuchenFX {
@@ -31,10 +29,10 @@ public class ObstkuchenFX {
 
     private String haltbarkeitFormatieren(Duration haltbarkeit) {
         long days = haltbarkeit.toDays();
-        if (days > 0) {
-            return days + " Tage";
+        if (days == 1) {
+            return days + " Tag";
         }
-        return "Weniger als 1 Tag";
+        return days + " Tage";
     }
 
     // Hersteller

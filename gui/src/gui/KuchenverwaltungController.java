@@ -75,19 +75,80 @@ public class KuchenverwaltungController implements Beobachter {
 
     @FXML
     private void handleAddKuchen() {
-        ChoiceDialog<String> herstellerDialog = new ChoiceDialog<>(herstellerList.get(0), herstellerList);
-        herstellerDialog.setTitle("Hersteller wählen");
-        herstellerDialog.setHeaderText("Hersteller für den Kuchen wählen");
-        herstellerDialog.setContentText("Hersteller:");
+        TextInputDialog inputDialog = new TextInputDialog();
+        inputDialog.setTitle("Kuchen hinzufügen");
+        inputDialog.setHeaderText("Eigenschaften des Kuchens eingeben");
+        inputDialog.setContentText("Format: [Hersteller] [Preis] \n[Nährwert] [Haltbarkeit in Stunden] \n[Allergene] [Obstsorte]");
 
-        Optional<String> herstellerResult = herstellerDialog.showAndWait();
-        if (herstellerResult.isEmpty()) return;
-        String herstellerName = herstellerResult.get();
+        Optional<String> result = inputDialog.showAndWait();
+        if (result.isEmpty()) return;
 
-        HerstellerImpl hersteller = new HerstellerImpl(herstellerName);
-        Set<Allergen> allergene = EnumSet.of(Allergen.Gluten, Allergen.Haselnuss);
-        ObstkuchenImpl kuchen = new ObstkuchenImpl(hersteller, allergene, 20, Duration.ofDays(5), new BigDecimal("1.99"), "Apfel"); // Test Kuchen
-        automat.addKuchen(kuchen);
+        String input = result.get().trim();
+        if (input.isEmpty()) return;
+
+        try {
+            ObstkuchenImpl kuchen = parseKuchenString(input);
+            if (!automat.addKuchen(kuchen)) {
+                if (automat.getAlleKuchen(null).size() >= automat.getKapazitaet()) {
+                    showError("Automat voll", "Der Automat ist bereits voll.");
+                } else {
+                    showError("Hersteller unbekannt", "Unbekannter Hersteller: " + kuchen.getHersteller().getName());
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            showError("Eingabefehler", e.getMessage());
+        } catch (Exception e) {
+            showError("Fehler", "Unerwarteter Fehler: " + e.getMessage());
+        }
+    }
+
+    public static ObstkuchenImpl parseKuchenString(String input) throws IllegalArgumentException { // Könnte in Util Modul bewegt werden?
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("Eingabe darf nicht leer sein");
+        }
+
+        String[] parts = input.trim().split(" ");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException("Eingabe muss aus 6 Parametern bestehen.");
+        }
+
+        try {
+            // Hersteller
+            String herstellerName = parts[0];
+            HerstellerImpl hersteller = new HerstellerImpl(herstellerName);
+
+            // Preis
+            BigDecimal preis = new BigDecimal(parts[1].replace(',', '.'));
+
+            // Nährwert
+            int naehrwert = Integer.parseInt(parts[2]);
+
+            // Haltbarkeit (in Stunden)
+            Duration haltbarkeit = Duration.ofHours(Long.parseLong(parts[3]));
+
+            // Allergene
+            Set<Allergen> allergene = new HashSet<>();
+            String allergeneStr = parts[4];
+            if (!allergeneStr.equals(",")) { // Einzelnes Komma = keine Allergene
+                String[] allergeneArray = allergeneStr.split(",");
+                for (String allergen : allergeneArray) {
+                    try {
+                        allergene.add(Allergen.valueOf(allergen.trim()));
+                    } catch (IllegalArgumentException e) {
+                        throw new IllegalArgumentException("Unbekanntes Allergen: " + allergen);
+                    }
+                }
+            }
+
+            // Obstsorte
+            String obstsorte = parts[5];
+
+            // Kuchen erstellen
+            return new ObstkuchenImpl(hersteller, allergene, naehrwert, haltbarkeit, preis, obstsorte);
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Ungültige Eingabe: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -116,6 +177,14 @@ public class KuchenverwaltungController implements Beobachter {
         for (ObstkuchenImpl k : alleKuchen) {
             kuchenList.add(new ObstkuchenFX(k));
         }
+    }
+
+    private void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @Override
