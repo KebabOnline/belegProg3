@@ -7,19 +7,20 @@ import verwaltung.Hersteller;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 public class ObstkuchenImpl implements Obstkuchen, Serializable {
     private static final long serialVersionUID = 1L;
-    private final Hersteller hersteller;
-    private final Collection<Allergen> allergene;
-    private final int naehrwert;
-    private final Duration haltbarkeit;
-    private final BigDecimal preis;
+    private Hersteller hersteller;
+    private Collection<Allergen> allergene;
+    private int naehrwert;
+    private Duration haltbarkeit;
+    private BigDecimal preis;
     private Date inspektionsdatum;
     private int fachnummer;
-    private final String obstsorte;
+    private String obstsorte;
 
     public ObstkuchenImpl(Hersteller hersteller, Collection<Allergen> allergene, int naehrwert, Duration haltbarkeit, BigDecimal preis, String obstsorte) {
         this.hersteller = hersteller;
@@ -28,6 +29,11 @@ public class ObstkuchenImpl implements Obstkuchen, Serializable {
         this.haltbarkeit = haltbarkeit;
         this.preis = preis;
         this.obstsorte = obstsorte;
+    }
+
+    // Konstruktor für JBP
+    public ObstkuchenImpl() {
+        this.allergene = new ArrayList<>();
     }
 
     @Override
@@ -76,5 +82,30 @@ public class ObstkuchenImpl implements Obstkuchen, Serializable {
 
     public void setFachnummer(int fachnummer) {
         this.fachnummer = fachnummer;
+    }
+
+    // Setter für JBP
+    public void setObstsorte(String obstsorte) {
+        this.obstsorte = obstsorte;
+    }
+
+    public void setHersteller(Hersteller hersteller) {
+        this.hersteller = hersteller;
+    }
+
+    public void setAllergene(Collection<Allergen> allergene) {
+        this.allergene = allergene != null ? allergene : new ArrayList<>();
+    }
+
+    public void setNaehrwert(int naehrwert) {
+        this.naehrwert = naehrwert;
+    }
+
+    public void setHaltbarkeit(Duration haltbarkeit) {
+        this.haltbarkeit = haltbarkeit;
+    }
+
+    public void setPreis(BigDecimal preis) {
+        this.preis = preis;
     }
 }

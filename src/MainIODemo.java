@@ -3,6 +3,7 @@ import io.AutomatIO;
 import kuchen.Allergen;
 import verwaltung.Hersteller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.*;
@@ -11,32 +12,68 @@ public class MainIODemo {
 
     public static void main(String[] args) {
         try {
-            // Automaten erstellen
             Automat automat = createAutomat();
 
-            // Zustand vor dem Speichern anzeigen
-            zeigeZustand(automat, "Zustand vor dem Speichern");
+            demoJOS(automat);
 
-            // Speichern
-            String dateiname = "automat_zustand.ser";
-            System.out.println("Speichere Zustand in " + dateiname);
-            AutomatIO.speichern(automat, dateiname);
-            System.out.println("Zustand gespeichert\n");
-
-            // Laden
-            System.out.println("Lade Zustand aus " + dateiname);
-            Automat geladenerAutomat = AutomatIO.laden(dateiname);
-            System.out.println("Zustand geladen\n");
-
-            // Zustand nach dem Laden anzeigen
-            zeigeZustand(geladenerAutomat, "Zustand nach dem Laden");
-
-            // Zustand vergleichen
-            vergleicheAutomaten(automat, geladenerAutomat);
+            //demoJBP(automat); // Funktioniert nicht
 
         } catch (Exception e) {
             System.err.println("Fehler: " + e.getMessage());
         }
+    }
+
+    private static void demoJOS(Automat automat) throws IOException, ClassNotFoundException {
+        System.out.println("######################");
+        System.out.println("#      JOS Demo      #");
+        System.out.println("######################\n");
+
+
+        // Zustand vor dem Speichern anzeigen
+        zeigeZustand(automat, "Zustand vor dem Speichern");
+
+        // Speichern
+        String dateiname = "automat_zustand.ser";
+        System.out.println("Speichere Zustand in " + dateiname);
+        AutomatIO.speichernJOS(automat, dateiname);
+        System.out.println("Zustand gespeichert\n");
+
+        // Laden
+        System.out.println("Lade Zustand aus " + dateiname);
+        Automat geladenerAutomat = AutomatIO.ladenJOS(dateiname);
+        System.out.println("Zustand geladen\n");
+
+        // Zustand nach dem Laden anzeigen
+        zeigeZustand(geladenerAutomat, "Zustand nach dem Laden");
+
+        // Zustand vergleichen
+        vergleicheAutomaten(automat, geladenerAutomat);
+    }
+
+    private static void demoJBP(Automat automat) throws IOException {
+        System.out.println("######################");
+        System.out.println("#      JBP Demo      #");
+        System.out.println("######################\n");
+
+        // Zustand vor dem Speichern anzeigen
+        zeigeZustand(automat, "Zustand vor dem Speichern");
+
+        // Speichern
+        String dateiname = "automat_zustand.xml";
+        System.out.println("Speichere Zustand in " + dateiname);
+        AutomatIO.speichernJBP(automat, dateiname);
+        System.out.println("Zustand gespeichert\n");
+
+        // Laden
+        System.out.println("Lade Zustand aus " + dateiname);
+        Automat geladenerAutomat = AutomatIO.ladenJBP(dateiname);
+        System.out.println("Zustand geladen\n");
+
+        // Zustand nach dem Laden anzeigen
+        zeigeZustand(geladenerAutomat, "Zustand nach dem Laden");
+
+        // Zustand vergleichen
+        vergleicheAutomaten(automat, geladenerAutomat);
     }
 
     private static Automat createAutomat() {

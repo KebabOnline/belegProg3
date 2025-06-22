@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Automat implements Subjekt, Serializable {
     private static final long serialVersionUID = 1L;
-    private final int kapazitaet;
+    private int kapazitaet;
     private Map<String, Hersteller> herstellerMap = new HashMap<>();
     private Map<Integer, ObstkuchenImpl> kuchenMap = new HashMap<>();
     private int naechsteFachnummer = 1;
@@ -19,6 +19,10 @@ public class Automat implements Subjekt, Serializable {
         this.kapazitaet = kapazitaet;
     }
 
+    // Konstruktor für JBP
+    public Automat() {
+        this(10);
+    }
 
     public synchronized boolean addHersteller(String name) {
         if (herstellerMap.containsKey(name)) {
@@ -88,10 +92,8 @@ public class Automat implements Subjekt, Serializable {
         return true;
     }
 
-    public synchronized int getKapazitaet() {
-        return kapazitaet;
-    }
 
+    // Subjekt Methoden
     @Override
     public synchronized void addListener(Beobachter beobachter) {
         this.beobachterList.add(beobachter);
@@ -114,6 +116,39 @@ public class Automat implements Subjekt, Serializable {
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
         beobachterList = new ArrayList<>();
+    }
+
+    // Getter und Setter for JBP
+    public synchronized int getKapazitaet() {
+        return kapazitaet;
+    }
+
+    public synchronized void setKapazitaet(int kapazitaet) {
+        this.kapazitaet = kapazitaet;
+    }
+
+    public synchronized Map<String, Hersteller> getHerstellerMap() {
+        return herstellerMap;
+    }
+
+    public synchronized void  setHerstellerMap(Map<String, Hersteller> herstellerMap) {
+        this.herstellerMap = herstellerMap != null ? herstellerMap : new HashMap<>();
+    }
+
+    public synchronized Map<Integer, ObstkuchenImpl> getKuchenMap() {
+        return kuchenMap;
+    }
+
+    public synchronized void setKuchenMap(Map<Integer, ObstkuchenImpl> kuchenMap) {
+        this.kuchenMap = kuchenMap != null ? kuchenMap : new HashMap<>();
+    }
+
+    public synchronized int getNaechsteFachnummer() {
+        return naechsteFachnummer;
+    }
+
+    public synchronized void setNaechsteFachnummer(int naechsteFachnummer) {
+        this.naechsteFachnummer = naechsteFachnummer;
     }
 }
 

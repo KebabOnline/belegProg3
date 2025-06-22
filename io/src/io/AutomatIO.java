@@ -2,12 +2,14 @@ package io;
 
 import domainLogic.Automat;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.*;
 
 public class AutomatIO {
 
-    // Methoden für Persistenz
-    public static void speichern(Automat automat, String dateiname) throws IOException {
+    //JOS
+    public static void speichernJOS(Automat automat, String dateiname) throws IOException {
         if (dateiname.contains("/") || dateiname.contains("\\")) {
             throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
         }
@@ -16,12 +18,31 @@ public class AutomatIO {
         }
     }
 
-    public static Automat laden(String dateiname) throws IOException, ClassNotFoundException {
+    public static Automat ladenJOS(String dateiname) throws IOException, ClassNotFoundException {
         if (dateiname.contains("/") || dateiname.contains("\\")) {
             throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
         }
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(dateiname))) {
             return (Automat) ois.readObject();
+        }
+    }
+
+    // JBP
+    public static void speichernJBP(Automat automat, String dateiname) throws IOException {
+        if (dateiname.contains("/") || dateiname.contains("\\")) {
+            throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
+        }
+        try (XMLEncoder encoder = new XMLEncoder(new FileOutputStream(dateiname))) {
+            encoder.writeObject(automat);
+        }
+    }
+
+    public static Automat ladenJBP(String dateiname) throws IOException {
+        if (dateiname.contains("/") || dateiname.contains("\\")) {
+            throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
+        }
+        try (XMLDecoder decoder = new XMLDecoder(new FileInputStream(dateiname))) {
+            return (Automat) decoder.readObject();
         }
     }
 }
