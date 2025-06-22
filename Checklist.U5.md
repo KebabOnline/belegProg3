@@ -38,4 +38,4 @@ werden überprüft (aber nicht bewertet), wenn hier als bearbeitet angegeben
 
 - [ ] Einbindung der Persistierung im CLI
 - [ ] Stellvertreter-Tests für das Lesen und Schreiben aus/in Streams
-- [ ] Speichern und Laden der Geschäftslogik mit JOS **und** JBP
+- [x] Speichern und Laden der Geschäftslogik mit JOS **und** JBP
