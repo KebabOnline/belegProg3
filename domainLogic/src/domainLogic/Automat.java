@@ -4,14 +4,16 @@ package domainLogic;
 import events.*;
 import verwaltung.Hersteller;
 
+import java.io.*;
 import java.util.*;
 
-public class Automat implements Subjekt {
+public class Automat implements Subjekt, Serializable {
+    private static final long serialVersionUID = 1L;
     private final int kapazitaet;
     private Map<String, Hersteller> herstellerMap = new HashMap<>();
     private Map<Integer, ObstkuchenImpl> kuchenMap = new HashMap<>();
     private int naechsteFachnummer = 1;
-    private final List<Beobachter> beobachterList = new ArrayList<>();
+    private transient List<Beobachter> beobachterList = new ArrayList<>();
 
     public Automat(int kapazitaet) {
         this.kapazitaet = kapazitaet;
@@ -106,6 +108,12 @@ public class Automat implements Subjekt {
         for (Beobachter beobachter : currentBeobachter) {
             beobachter.aktualisiere(event);
         }
+    }
+
+    // Methode zur Wiederherstellung der Beobachterliste
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        beobachterList = new ArrayList<>();
     }
 }
 

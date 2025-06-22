@@ -4,12 +4,14 @@ import kuchen.Allergen;
 import kuchen.Obstkuchen;
 import verwaltung.Hersteller;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class ObstkuchenImpl implements Obstkuchen {
+public class ObstkuchenImpl implements Obstkuchen, Serializable {
+    private static final long serialVersionUID = 1L;
     private final Hersteller hersteller;
     private final Collection<Allergen> allergene;
     private final int naehrwert;
