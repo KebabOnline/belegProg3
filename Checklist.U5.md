@@ -37,5 +37,5 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 werden überprüft (aber nicht bewertet), wenn hier als bearbeitet angegeben   
 
 - [ ] Einbindung der Persistierung im CLI
-- [ ] Stellvertreter-Tests für das Lesen und Schreiben aus/in Streams
+- [x] Stellvertreter-Tests für das Lesen und Schreiben aus/in Streams
 - [x] Speichern und Laden der Geschäftslogik mit JOS **und** JBP
