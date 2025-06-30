@@ -8,13 +8,25 @@ import java.io.*;
 
 public class AutomatIO {
 
+    public static void speichernJOS(Automat automat, OutputStream os) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(os)) {
+            oos.writeObject(automat);
+        }
+    }
+
     //JOS
     public static void speichernJOS(Automat automat, String dateiname) throws IOException {
         if (dateiname.contains("/") || dateiname.contains("\\")) {
             throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
         }
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dateiname))) {
-            oos.writeObject(automat);
+        try (FileOutputStream fos = new FileOutputStream(dateiname)) {
+            speichernJOS(automat, fos);
+        }
+    }
+
+    public static Automat ladenJOS(InputStream is) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (Automat) ois.readObject();
         }
     }
 
@@ -22,8 +34,8 @@ public class AutomatIO {
         if (dateiname.contains("/") || dateiname.contains("\\")) {
             throw new IllegalArgumentException("Dateiname darf keine Pfade enthalten");
         }
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(dateiname))) {
-            return (Automat) ois.readObject();
+        try (FileInputStream fis = new FileInputStream(dateiname)) {
+            return ladenJOS(fis);
         }
     }
 
